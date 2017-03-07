@@ -1,4 +1,4 @@
-#include "Edge.h"
+#include "../include/Edge.h"
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -20,6 +20,15 @@ Edge::Edge(int x, int y, int w) {
     weight = w;
 }
 
+Node Edge::get_src() {
+    return src;
+}
+
+Node Edge::get_dest() {
+    return dest;
+}
+
 void Edge::print() {
     cout << "SRC: " << src.get_num() << " -> DEST: " << dest.get_num() << endl;
 }
+

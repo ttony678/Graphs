@@ -1,7 +1,5 @@
 #include <iostream>
-#include "Graph.h"
-#include "Edge.h"
-#include "Node.h"
+#include "../include/Graph.h"
 using namespace std;
 
 int main() {

@@ -10,6 +10,8 @@ class Edge {
         Edge();
         Edge(Node, Node, int i = 0);
         Edge(int, int, int i = 0);
+        Node get_src();
+        Node get_dest();
         void print();
 };
 
