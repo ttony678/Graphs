@@ -8,11 +8,12 @@ using namespace std;
 class Graph {
     private:
         vector<Edge> edge;
+        bool node_visited(Node, vector<Node>);
     public:
         Graph();
         void add_edge(Edge);
         void add_edge(Node, Node, int i = 0);
-        void add_edge(int, int, int i = 0); 
+        void add_edge(int, int, int i = 0);
         void print();
         void dfs(Node);
 };

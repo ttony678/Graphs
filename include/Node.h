@@ -9,7 +9,9 @@ class Node {
         Node();
         Node(int);
         void set_num(int);
-        int get_num();
+        int get_num() const;
+        bool operator == (const Node&);
+        bool operator != (const Node&);
 };
 
 #endif

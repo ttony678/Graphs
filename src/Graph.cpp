@@ -34,14 +34,47 @@ void Graph::print() {
 
 void Graph::dfs(Node begin) {
     vector<Node> visited;
-    queue<Node> q;
+    queue<Node> breadth;
 
-    for (unsigned int i = 0; i < edge.size(); i++) {
-        if (edge.at(i).get_src() == begin) {
-            for (unsigned int k = 0; k < visited.size(); k++) {
-                
+    if (edge.size() == 0) {
+        cout << "Graph is empty" << endl;
+        return;
+    }
+
+    breadth.push(begin);
+    visited.push_back(begin);
+
+    while (!breadth.empty()) {
+        Node temp = breadth.front();
+        cout << temp.get_num() << endl;
+        breadth.pop();
+
+        // This loop checks the source Node of each Edge and compares it with
+        // the front of the 'breadth' queue. If it finds a source Node that
+        // matches, it adds the found Node to the queue and to the
+        // 'visited' vector.
+        for (unsigned int i = 0; i < edge.size(); i++) {
+            if (edge.at(i).get_src() == temp) {
+                if (!node_visited(edge.at(i).get_dest(), visited)) {
+                    breadth.push(edge.at(i).get_dest());
+                    visited.push_back(edge.at(i).get_dest());
+                }
             }
-            visited.push_back(edge.at(i).get_src());
         }
     }
+}
+
+// This function checks to see if a Node has already been visited
+bool Graph::node_visited(Node x, vector<Node> v) {
+    if (v.size() == 0) {
+        return false;
+    }
+    else {
+        for (unsigned i = 0; i < v.size(); i++) {
+            if (x == v.at(i)) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
