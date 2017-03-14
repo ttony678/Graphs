@@ -22,7 +22,26 @@ void Graph::add_edge(int x, int y, int w) {
 }
 
 void Graph::print() {
-    for (unsigned i = 0; i < edge.size(); i++) {
-        edge.at(i).print();
+    if (edge.size() > 0) {
+        for (unsigned i = 0; i < edge.size(); i++) {
+            edge.at(i).print();
+        }
+    }
+    else {
+        cout << "Graph is empty" << endl;
+    }
+}
+
+void Graph::dfs(Node begin) {
+    vector<Node> visited;
+    queue<Node> q;
+
+    for (unsigned int i = 0; i < edge.size(); i++) {
+        if (edge.at(i).get_src() == begin) {
+            for (unsigned int k = 0; k < visited.size(); k++) {
+                
+            }
+            visited.push_back(edge.at(i).get_src());
+        }
     }
 }
