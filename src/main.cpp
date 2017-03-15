@@ -25,8 +25,10 @@ int main() {
 
     Graph x;
     x.add_edge(ab);
+    x.add_edge(ab);
     x.add_edge(ac);
     x.add_edge(bd);
+    x.add_edge(be);
     x.add_edge(be);
     x.add_edge(bf);
     x.add_edge(fg);

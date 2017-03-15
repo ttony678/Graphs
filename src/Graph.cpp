@@ -6,25 +6,52 @@ using std::endl;
 Graph::Graph() {}
 
 void Graph::add_edge(Edge e) {
-    edge.push_back(e);
+    bool present = false;
+
+    for (unsigned i = 0; i < edges.size(); i++) {
+        if (e.get_src() == edges.at(i).get_src() && e.get_dest() == edges.at(i).get_dest()) {
+            cout << "Edge: " << e.get_src().get_num() << "->" << e.get_dest().get_num()
+                 << " -- already in graph" << endl;
+            present = true;
+        }
+    }
+
+    if (!present) {
+        edges.push_back(e);
+    }
 }
 
 void Graph::add_edge(Node x, Node y, int w) {
-    Edge e(x, y, w);
-    edge.push_back(e);
+    bool present = false;
+
+    for (unsigned i = 0; i < edges.size(); i++) {
+        if (x == edges.at(i).get_src() && y == edges.at(i).get_dest()) {
+            cout << "Edge: " << x.get_num() << "->" << y.get_num()
+                 << " -- already in graph" << endl;
+            present = true;
+        }
+
+    }
+
+    if (!present) {
+        Edge e(x, y, w);
+        edges.push_back(e);
+    }
 }
 
 void Graph::add_edge(int x, int y, int w) {
     Node src(x);
     Node dest(y);
     Edge e(src, dest, w);
-    edge.push_back(e);
+    edges.push_back(e);
 }
 
 void Graph::print() {
-    if (edge.size() > 0) {
-        for (unsigned i = 0; i < edge.size(); i++) {
-            edge.at(i).print();
+    cout << endl;
+
+    if (edges.size() > 0) {
+        for (unsigned i = 0; i < edges.size(); i++) {
+            edges.at(i).print();
         }
     }
     else {
@@ -36,28 +63,28 @@ void Graph::dfs(Node begin) {
     vector<Node> visited;
     queue<Node> breadth;
 
-    if (edge.size() == 0) {
+    if (edges.size() == 0) {
         cout << "Graph is empty" << endl;
         return;
     }
 
     breadth.push(begin);
-    visited.push_back(begin);
 
     while (!breadth.empty()) {
         Node temp = breadth.front();
-        cout << temp.get_num() << endl;
+        visited.push_back(temp);
         breadth.pop();
 
-        // This loop checks the source Node of each Edge and compares it with
-        // the front of the 'breadth' queue. If it finds a source Node that
-        // matches, it adds the found Node to the queue and to the
-        // 'visited' vector.
-        for (unsigned int i = 0; i < edge.size(); i++) {
-            if (edge.at(i).get_src() == temp) {
-                if (!node_visited(edge.at(i).get_dest(), visited)) {
-                    breadth.push(edge.at(i).get_dest());
-                    visited.push_back(edge.at(i).get_dest());
+        cout << temp.get_num() << endl;
+
+        // This loop checks the source Node 'src' of every Edge in the graph
+        // and compares it with the front of the 'breadth' queue. If the front matches
+        // any source Node, the corresponding destination 'dest' Node is added
+        // to the queue.
+        for (unsigned int i = 0; i < edges.size(); i++) {
+            if (edges.at(i).get_src() == temp) {
+                if (!node_visited(edges.at(i).get_dest(), visited)) {
+                    breadth.push(edges.at(i).get_dest());
                 }
             }
         }

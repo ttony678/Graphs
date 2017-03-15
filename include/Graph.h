@@ -7,7 +7,7 @@ using namespace std;
 
 class Graph {
     private:
-        vector<Edge> edge;
+        vector<Edge> edges;
         bool node_visited(Node, vector<Node>);
     public:
         Graph();
