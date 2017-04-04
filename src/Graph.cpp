@@ -59,7 +59,7 @@ void Graph::print() {
     }
 }
 
-void Graph::dfs(Node begin) {
+void Graph::bfs(Node begin) {
     vector<Node> visited;
     queue<Node> breadth;
 
@@ -86,6 +86,47 @@ void Graph::dfs(Node begin) {
                 if (!node_visited(edges.at(i).get_dest(), visited)) {
                     breadth.push(edges.at(i).get_dest());
                 }
+            }
+        }
+    }
+}
+
+void Graph::dfs(Node begin) {
+    vector<Node> visited;
+    stack<Node> stk;
+
+    if (edges.size() == 0) {
+        cout << "Graph is empty" << endl;
+        return;
+    }
+
+    stk.push(begin); // Pushing 'begin' Node twice for all its adjacent Nodes
+    stk.push(begin); // or else it'll be popped off too soon in the loop.
+    visited.push_back(begin);
+    cout << begin.get_num() << endl;
+
+    while (!stk.empty()) {
+        stk.pop();
+        if (stk.empty())
+            return;
+
+        // This loop iterates through every edge in the graph and compares the
+        // 'src' node with what is at the top of the stack initially. Once an
+        // adjacent node is found (the 'dest' node), it is pushed to the
+        // visited vector and the top of the stack, and then set as the new top
+        // variable which keeps traversing deeper and deeper. It keeps going
+        // through the graph by resetting the counter variable i to zero
+        // afterwards.
+        Node top = stk.top();
+        for (unsigned int i = 0; i < edges.size(); i++) {
+            Node temp = edges.at(i).get_src();
+            if (top == temp && !node_visited(edges.at(i).get_dest(), visited)) {
+                temp = edges.at(i).get_dest();
+                cout << temp.get_num() << endl;
+                visited.push_back(temp);
+                stk.push(temp);
+                top = temp;
+                i = 0;
             }
         }
     }

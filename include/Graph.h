@@ -3,6 +3,7 @@
 #include "Edge.h"
 #include <vector>
 #include <queue>
+#include <stack>
 using namespace std;
 
 class Graph {
@@ -15,6 +16,7 @@ class Graph {
         void add_edge(Node, Node, int i = 0);
         void add_edge(int, int, int i = 0);
         void print();
+        void bfs(Node);
         void dfs(Node);
 };
 
