@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../include/Graph.h"
+#include "../include/Undir_Graph.h"
 using namespace std;
 
 int main() {
@@ -23,7 +24,7 @@ int main() {
     Edge dh(d, h);
     Edge di(d, i);
 
-    Graph x;
+    Undir_Graph x;
     x.add_edge(ab);
     x.add_edge(ac);
     x.add_edge(bd);
@@ -36,7 +37,7 @@ int main() {
 
     cout << endl;
 
-    x.bfs(a);
+    x.dfs(i);
 
     return 0;
 }

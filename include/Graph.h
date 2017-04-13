@@ -7,8 +7,9 @@
 using namespace std;
 
 class Graph {
-    private:
+    protected:
         vector<Edge> edges;
+    private:
         bool node_visited(Node, vector<Node>);
     public:
         Graph();
