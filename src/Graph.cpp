@@ -71,21 +71,20 @@ void Graph::bfs(Node begin) {
     breadth.push(begin);
 
     while (!breadth.empty()) {
-        Node temp = breadth.front();
-        visited.push_back(temp);
+        Node front = breadth.front();
+        visited.push_back(front);
         breadth.pop();
 
-        cout << temp.get_num() << endl;
+        cout << front.get_num() << endl;
 
         // This loop checks the source Node 'src' of every Edge in the graph
         // and compares it with the front of the 'breadth' queue. If the front matches
         // any source Node, the corresponding destination 'dest' Node is added
         // to the queue.
         for (unsigned int i = 0; i < edges.size(); i++) {
-            if (edges.at(i).get_src() == temp) {
-                if (!node_visited(edges.at(i).get_dest(), visited)) {
-                    breadth.push(edges.at(i).get_dest());
-                }
+            Node temp = edges.at(i).get_src();
+            if (front == temp && !node_visited(edges.at(i).get_dest(), visited)){
+                breadth.push(edges.at(i).get_dest());
             }
         }
     }
@@ -110,13 +109,13 @@ void Graph::dfs(Node begin) {
         if (stk.empty())
             return;
 
-        // This loop iterates through every edge in the graph and compares the
-        // 'src' node with what is at the top of the stack initially. Once an
-        // adjacent node is found (the 'dest' node), it is pushed to the
-        // visited vector and the top of the stack, and then set as the new top
-        // variable which keeps traversing deeper and deeper. It keeps going
-        // through the graph by resetting the counter variable i to zero
-        // afterwards.
+        // This loop iterates through every edge in the graph. Then it compares
+        // the 'src' Node with what is initially pushed to the top of the stack 
+        // (begin). Once an adjacent Node is found, it (the 'dest' Node) is
+        // pushed to the visited vector and the top of the stack. It is then 
+        // set as the new top variable which keeps traversing deeper and 
+        // deeper. It keeps going through the graph by setting the counter 
+        // variable i=0 afterwards.
         Node top = stk.top();
         for (unsigned int i = 0; i < edges.size(); i++) {
             Node temp = edges.at(i).get_src();

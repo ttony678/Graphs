@@ -36,7 +36,7 @@ int main() {
 
     cout << endl;
 
-    x.dfs(a);
+    x.bfs(a);
 
     return 0;
 }
