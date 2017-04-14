@@ -4,7 +4,6 @@
 class Node {
     private:
         int num;
-
     public:
         Node();
         Node(int);
