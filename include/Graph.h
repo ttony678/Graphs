@@ -7,18 +7,20 @@
 using namespace std;
 
 class Graph {
-    protected:
-        vector<Edge> edges;
-    private:
-        bool node_visited(Node, vector<Node>);
     public:
         Graph();
-        void add_edge(Edge);
-        void add_edge(Node, Node, int i = 0);
-        void add_edge(int, int, int i = 0);
-        void print();
-        void bfs(Node);
-        void dfs(Node);
+        void AddEdge(Edge);
+        void AddEdge(Node, Node, int weight = 1);
+        void AddEdge(int, int, int weight = 1);
+        void Print();
+        void Bfs(Node);
+        void Dfs(Node);
+
+    protected:
+        vector<Edge> edges;
+
+    private:
+        bool isNodeVisited(Node, vector<Node>);
 };
 
 #endif

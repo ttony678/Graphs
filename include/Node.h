@@ -2,15 +2,17 @@
 #define NODE_H
 
 class Node {
-    private:
-        int num;
     public:
         Node();
         Node(int);
-        void set_num(int);
-        int get_num() const;
+        void Num(int);      // Set private variable.
+        int  Num() const;   // Get private variable.
+        void operator =  (const Node&);
         bool operator == (const Node&);
         bool operator != (const Node&);
+        
+    private:
+        int num; 
 };
 
 #endif

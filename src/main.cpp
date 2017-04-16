@@ -11,33 +11,27 @@ int main() {
     Node d(4);
     Node e(5);
     Node f(6);
-    Node g(7);
-    Node h(8);
-    Node i(9);
+   
 
     Edge ab(a, b);
     Edge ac(a, c);
     Edge bd(b, d);
     Edge be(b, e);
     Edge bf(b, f);
-    Edge fg(f, g);
-    Edge dh(d, h);
-    Edge di(d, i);
+  
 
-    Undir_Graph x;
-    x.add_edge(ab);
-    x.add_edge(ac);
-    x.add_edge(bd);
-    x.add_edge(be);
-    x.add_edge(bf);
-    x.add_edge(fg);
-    x.add_edge(dh);
-    x.add_edge(di);
-    x.print();
+    Graph x;
+    x.AddEdge(ab);
+    x.AddEdge(ac);
+    x.AddEdge(bd);
+    x.AddEdge(be);
+    x.AddEdge(bf);
+    x.Print();
 
     cout << endl;
-
-    x.dfs(i);
+    x.Dfs(a);
+    cout << endl;
+    x.Bfs(a);
 
     return 0;
 }

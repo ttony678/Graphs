@@ -8,16 +8,20 @@ Node::Node(int x) {
     num = x;
 }
 
-void Node::set_num(int x) {
+void Node::Num(int x) {
     num = x;
 }
 
-int Node::get_num() const {
+int Node::Num() const {
     return num;
 }
 
-bool Node::operator == (const Node &x) {
-    if (num == x.get_num()) {
+void Node::operator = (const Node &rhs) {
+    num = rhs.Num();
+}
+
+bool Node::operator == (const Node &rhs) {
+    if (num == rhs.Num()) {
         return true;
     }
     else {
@@ -25,6 +29,6 @@ bool Node::operator == (const Node &x) {
     }
 }
 
-bool Node::operator != (const Node &x) {
-    return !operator == (x);
+bool Node::operator != (const Node &rhs) {
+    return !(operator == (rhs));
 }

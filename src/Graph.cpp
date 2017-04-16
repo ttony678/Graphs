@@ -5,12 +5,12 @@ using std::endl;
 
 Graph::Graph() {}
 
-void Graph::add_edge(Edge e) {
+void Graph::AddEdge(Edge e) {
     bool present = false;
 
     for (unsigned i = 0; i < edges.size(); i++) {
-        if (e.get_src() == edges.at(i).get_src() && e.get_dest() == edges.at(i).get_dest()) {
-            cout << "Edge: " << e.get_src().get_num() << "->" << e.get_dest().get_num()
+        if (e == edges.at(i)) {
+            cout << "Edge: " << e.Src().Num() << "->" << e.Dest().Num()
                  << " -- already in graph" << endl;
             present = true;
         }
@@ -21,37 +21,61 @@ void Graph::add_edge(Edge e) {
     }
 }
 
-void Graph::add_edge(Node x, Node y, int w) {
+void Graph::AddEdge(Node src, Node dest, int weight) {
     bool present = false;
+    Edge srcToDest(src, dest, weight);
+
+    // Checking if both Nodes are the same.
+    if (src == dest) {
+        cout << "Cannot create an Edge with two of the same Nodes" << endl;
+        return;
+    }
 
     for (unsigned i = 0; i < edges.size(); i++) {
-        if (x == edges.at(i).get_src() && y == edges.at(i).get_dest()) {
-            cout << "Edge: " << x.get_num() << "->" << y.get_num()
+        if (srcToDest == edges.at(i)) {
+            cout << "Edge: " << src.Num() << "->" << dest.Num()
                  << " -- already in graph" << endl;
             present = true;
         }
-
     }
 
     if (!present) {
-        Edge e(x, y, w);
-        edges.push_back(e);
+        edges.push_back(srcToDest);
     }
 }
 
-void Graph::add_edge(int x, int y, int w) {
+void Graph::AddEdge(int x, int y, int weight) {
+    bool present = false;
     Node src(x);
     Node dest(y);
-    Edge e(src, dest, w);
-    edges.push_back(e);
+    Edge srcToDest(src, dest, weight);
+
+    // Checking if both Nodes are the same.
+    if (src == dest) {
+        cout << "Cannot create an Edge with two of the same Nodes" << endl;
+        return;
+    }
+
+    // Checking if Edge is already in the Graph.
+    for (unsigned i = 0; i < edges.size(); i++) {
+        if (srcToDest == edges.at(i)) {
+            cout << "Edge: " << src.Num() << "->" << dest.Num()
+                 << " -- already in graph" << endl;
+            present = true;
+        }
+    }
+
+    if (!present) {
+        edges.push_back(srcToDest);
+    }
 }
 
-void Graph::print() {
+void Graph::Print() {
     cout << endl;
 
     if (edges.size() > 0) {
         for (unsigned i = 0; i < edges.size(); i++) {
-            edges.at(i).print();
+            edges.at(i).Print();
         }
     }
     else {
@@ -59,7 +83,7 @@ void Graph::print() {
     }
 }
 
-void Graph::bfs(Node begin) {
+void Graph::Bfs(Node begin) {
     vector<Node> visited;
     queue<Node> breadth;
 
@@ -75,22 +99,22 @@ void Graph::bfs(Node begin) {
         visited.push_back(front);
         breadth.pop();
 
-        cout << front.get_num() << endl;
+        cout << front.Num() << endl;
 
         // This loop checks the source Node 'src' of every Edge in the graph
-        // and compares it with the front of the 'breadth' queue. If the front matches
-        // any source Node, the corresponding destination 'dest' Node is added
-        // to the queue.
+        // and compares it with the front of the 'breadth' queue. If the front
+        // matches any source Node, the corresponding destination 'dest' Node
+        // is added to the queue.
         for (unsigned int i = 0; i < edges.size(); i++) {
-            Node temp = edges.at(i).get_src();
-            if (front == temp && !node_visited(edges.at(i).get_dest(), visited)){
-                breadth.push(edges.at(i).get_dest());
+            Node temp = edges.at(i).Src();
+            if (front == temp && !isNodeVisited(edges.at(i).Dest(), visited)) {
+                breadth.push(edges.at(i).Dest());
             }
         }
     }
 }
 
-void Graph::dfs(Node begin) {
+void Graph::Dfs(Node begin) {
     vector<Node> visited;
     stack<Node> stk;
 
@@ -102,7 +126,7 @@ void Graph::dfs(Node begin) {
     stk.push(begin); // Pushing 'begin' Node twice for all its adjacent Nodes
     stk.push(begin); // or else it'll be popped off too soon in the loop.
     visited.push_back(begin);
-    cout << begin.get_num() << endl;
+    cout << begin.Num() << endl;
 
     while (!stk.empty()) {
         stk.pop();
@@ -118,10 +142,10 @@ void Graph::dfs(Node begin) {
         // variable i=0 afterwards.
         Node top = stk.top();
         for (unsigned int i = 0; i < edges.size(); i++) {
-            Node temp = edges.at(i).get_src();
-            if (top == temp && !node_visited(edges.at(i).get_dest(), visited)) {
-                temp = edges.at(i).get_dest();
-                cout << temp.get_num() << endl;
+            Node temp = edges.at(i).Src();
+            if (top == temp && !isNodeVisited(edges.at(i).Dest(), visited)) {
+                temp = edges.at(i).Dest();
+                cout << temp.Num() << endl;
                 visited.push_back(temp);
                 stk.push(temp);
                 top = temp;
@@ -132,13 +156,13 @@ void Graph::dfs(Node begin) {
 }
 
 // This function checks to see if a Node has already been visited
-bool Graph::node_visited(Node x, vector<Node> v) {
-    if (v.size() == 0) {
+bool Graph::isNodeVisited(Node check, vector<Node> vNodes) {
+    if (vNodes.size() == 0) {
         return false;
     }
     else {
-        for (unsigned i = 0; i < v.size(); i++) {
-            if (x == v.at(i)) {
+        for (unsigned i = 0; i < vNodes.size(); i++) {
+            if (check == vNodes.at(i)) {
                 return true;
             }
         }
