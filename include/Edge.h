@@ -7,9 +7,9 @@ class Edge {
         Edge();
         Edge(Node, Node, int weight = 0);
         Edge(int, int, int weight = 0);
-        Node Src() const;
-        Node Dest() const;
-        int  Weight() const;
+        Node Src() const;       // Get src
+        Node Dest() const;      // Get dest
+        int  Weight() const;    // Get weight
         void Print();
         void operator =  (const Edge&);
         bool operator <  (const Edge&);
