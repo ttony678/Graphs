@@ -1,14 +1,14 @@
-#ifndef GRAPH_H
-#define GRAPH_H
+#ifndef DIRGRAPH_H
+#define DIRGRAPH_H
 #include "Edge.h"
 #include <vector>
 #include <queue>
 #include <stack>
 using namespace std;
 
-class Graph {
+class DirGraph {
     public:
-        Graph();
+        DirGraph();
         void AddEdge(Edge);
         void AddEdge(Node, Node, int weight = 1);
         void AddEdge(int, int, int weight = 1);

@@ -1,12 +1,12 @@
-#ifndef UNDIR_GRAPH_H
-#define UNDIR_GRAPH_H
-#include "Graph.h"
+#ifndef UNDIRGRAPH_H
+#define UNDIRGRAPH_H
+#include "DirGraph.h"
 #include "Edge.h"
 using namespace std;
 
-class Undir_Graph : public Graph {
+class UndirGraph : public DirGraph {
     public:
-        Undir_Graph();
+        UndirGraph();
         void AddEdge(Edge);
         void AddEdge(Node, Node, int weight = 1);
         void AddEdge(int, int, int weight = 1);

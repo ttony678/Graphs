@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../include/Graph.h"
-#include "../include/Undir_Graph.h"
+#include "../include/DirGraph.h"
+#include "../include/UndirGraph.h"
 using namespace std;
 
 int main() {
@@ -14,14 +14,16 @@ int main() {
    
 
     Edge ab(a, b);
+    Edge ba(b, a);
     Edge ac(a, c);
     Edge bd(b, d);
     Edge be(b, e);
     Edge bf(b, f);
   
 
-    Graph x;
+    UndirGraph x;
     x.AddEdge(ab);
+    x.AddEdge(ba);
     x.AddEdge(ac);
     x.AddEdge(bd);
     x.AddEdge(be);
@@ -29,9 +31,9 @@ int main() {
     x.Print();
 
     cout << endl;
-    x.Dfs(a);
+    //x.Dfs(a);
     cout << endl;
-    x.Bfs(a);
+    //x.Bfs(a);
 
     return 0;
 }
