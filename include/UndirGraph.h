@@ -7,8 +7,8 @@ using namespace std;
 class UndirGraph : public DirGraph {
     public:
         UndirGraph();
-        void AddEdge(Edge);
-        void AddEdge(Node, Node, int weight = 1);
+        void AddEdge(const Edge&);
+        void AddEdge(const Node&, const Node&, int weight = 1);
         void AddEdge(int, int, int weight = 1);
 };
 

@@ -5,7 +5,7 @@ using std::endl;
 
 DirGraph::DirGraph() {}
 
-void DirGraph::AddEdge(Edge e) {
+void DirGraph::AddEdge(const Edge &e) {
     for (unsigned i = 0; i < edges.size(); i++) {
         if (e == edges.at(i)) {
             cout << "Edge: " << e.Src().Num() << "->" << e.Dest().Num()
@@ -17,7 +17,7 @@ void DirGraph::AddEdge(Edge e) {
     edges.push_back(e);
 }
 
-void DirGraph::AddEdge(Node src, Node dest, int weight) {
+void DirGraph::AddEdge(const Node &src, const Node &dest, int weight) {
     Edge srcToDest(src, dest, weight);
 
     // Checking if both Nodes are the same.
@@ -60,7 +60,7 @@ void DirGraph::AddEdge(int x, int y, int weight) {
     edges.push_back(srcToDest);
 }
 
-void DirGraph::Print() {
+void DirGraph::Print() const {
     cout << endl;
 
     if (edges.size() > 0) {
@@ -73,7 +73,7 @@ void DirGraph::Print() {
     }
 }
 
-void DirGraph::Bfs(Node startNode) {
+void DirGraph::Bfs(Node startNode) const {
     Node tempSrc;
     Node tempDest;
     Node frontNode;
@@ -106,7 +106,7 @@ void DirGraph::Bfs(Node startNode) {
     }
 }
 
-void DirGraph::Dfs(Node startNode) {
+void DirGraph::Dfs(Node startNode) const {
     Node tempSrc;
     Node tempDest;
     Node topNode;
@@ -150,7 +150,7 @@ void DirGraph::Dfs(Node startNode) {
 }
 
 // This function checks to see if a Node has already been visited
-bool DirGraph::isNodeVisited(Node check, vector<Node> vNodes) {
+bool DirGraph::isNodeVisited(Node check, vector<Node> vNodes) const {
     if (vNodes.size() == 0) {
         return false;
     }

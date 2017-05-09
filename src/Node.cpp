@@ -20,7 +20,7 @@ void Node::operator = (const Node &rhs) {
     num = rhs.Num();
 }
 
-bool Node::operator == (const Node &rhs) {
+bool Node::operator == (const Node &rhs) const {
     if (num == rhs.Num()) {
         return true;
     }
@@ -29,6 +29,6 @@ bool Node::operator == (const Node &rhs) {
     }
 }
 
-bool Node::operator != (const Node &rhs) {
+bool Node::operator != (const Node &rhs) const {
     return !(operator == (rhs));
 }

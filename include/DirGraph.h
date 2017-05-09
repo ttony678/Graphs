@@ -9,18 +9,18 @@ using namespace std;
 class DirGraph {
     public:
         DirGraph();
-        void AddEdge(Edge);
-        void AddEdge(Node, Node, int weight = 1);
+        void AddEdge(const Edge&);
+        void AddEdge(const Node&, const Node&, int weight = 1);
         void AddEdge(int, int, int weight = 1);
-        void Print();
-        void Bfs(Node);
-        void Dfs(Node);
+        void Print() const;
+        void Bfs(Node) const;
+        void Dfs(Node) const;
 
     protected:
         vector<Edge> edges;
 
     private:
-        bool isNodeVisited(Node, vector<Node>);
+        bool isNodeVisited(Node, vector<Node>) const;
 };
 
 #endif

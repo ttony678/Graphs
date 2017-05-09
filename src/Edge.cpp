@@ -8,7 +8,7 @@ Edge::Edge() {
     dest.Num(0);
 }
 
-Edge::Edge(Node x, Node y, int w) {
+Edge::Edge(const Node &x, const Node &y, int w) {
     src = x;
     dest = y;
     weight = w;
@@ -32,7 +32,7 @@ int Edge::Weight() const {
     return weight;
 }
 
-void Edge::Print() {
+void Edge::Print() const {
     cout << "SRC: " << src.Num() << " -> DEST: " << dest.Num() << endl;
 }
 
@@ -42,7 +42,7 @@ void Edge::operator = (const Edge &rhs) {
     weight = rhs.Weight();
 }
 
-bool Edge::operator < (const Edge &rhs) {
+bool Edge::operator < (const Edge &rhs) const {
     if (weight < rhs.Weight()) {
         return true;
     } else {
@@ -50,7 +50,7 @@ bool Edge::operator < (const Edge &rhs) {
     }
 }
 
-bool Edge::operator == (const Edge &rhs) {
+bool Edge::operator == (const Edge &rhs) const {
     if (src == rhs.Src() && dest == rhs.Dest() && weight == rhs.Weight()) {
         return true;
     } else {

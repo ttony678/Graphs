@@ -5,15 +5,15 @@
 class Edge {
     public:
         Edge();
-        Edge(Node, Node, int weight = 0);
+        Edge(const Node&, const Node&, int weight = 0);
         Edge(int, int, int weight = 0);
         Node Src() const;       // Get src.
         Node Dest() const;      // Get dest.
         int  Weight() const;    // Get weight.
-        void Print();
+        void Print() const;     // Print all edges.
         void operator =  (const Edge&);
-        bool operator <  (const Edge&);
-        bool operator == (const Edge&);
+        bool operator <  (const Edge&) const;
+        bool operator == (const Edge&) const;
 
     private:
         Node src;

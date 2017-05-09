@@ -8,8 +8,8 @@ class Node {
         void Num(int);      // Set private variable.
         int  Num() const;   // Get private variable.
         void operator =  (const Node&);
-        bool operator == (const Node&);
-        bool operator != (const Node&);
+        bool operator == (const Node&) const;
+        bool operator != (const Node&) const;
         
     private:
         int num; 

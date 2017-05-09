@@ -8,7 +8,7 @@ UndirGraph::UndirGraph() : DirGraph() {}
 
 // This parameter is composed of a source Node and destination Node.
 // Since this is an undirected Graph, it also adds an Edge from dest to src.
-void UndirGraph::AddEdge(Edge srcToDest) {
+void UndirGraph::AddEdge(const Edge &srcToDest) {
     Edge destToSrc(srcToDest.Dest(), srcToDest.Src(), srcToDest.Weight());
 
     // Checking to see if the Edge is already in the Graph.
@@ -26,7 +26,7 @@ void UndirGraph::AddEdge(Edge srcToDest) {
 
 // Creates an Edge from src to dest with both Node paramaters and adds it to 
 // the Graph. Also creates an Edge from dest to src and adds to the Graph.
-void UndirGraph::AddEdge(Node src, Node dest, int weight) {
+void UndirGraph::AddEdge(const Node &src, const Node &dest, int weight) {
     Edge srcToDest(src, dest, weight);
     Edge destToSrc(dest, src, weight);
 
